@@ -11,20 +11,20 @@ import SettingsIcon from "@mui/icons-material/Settings";
 import WhatshotIcon from "@mui/icons-material/Whatshot"; // Shorts
 import { Link } from "react-router-dom";
 
-const SidebarItem = ({ icon: Icon, label, isMenuOpen,link }) => (
+const SidebarItem = ({ icon: Icon, label, isMenuOpen, link }) => (
   <Link to={link}>
-  <div
-    className={
-      isMenuOpen
-        ? "p-3 rounded-lg flex items-center font-semibold hover:bg-gray-200 cursor-pointer"
-        : "p-3 mx-auto rounded-lg grid hover:bg-gray-200 cursor-pointer"
-    }
-  >
-    <Icon fontSize="large" />
-    {isMenuOpen && (
-      <p className="ml-[50px] text-md truncate my-auto">{label}</p>
-    )}
-  </div>
+    <div
+      className={
+        isMenuOpen
+          ? "p-3 rounded-lg flex items-center font-semibold hover:bg-gray-100 cursor-pointer"
+          : "p-3 mx-auto rounded-lg grid hover:bg-gray-100 cursor-pointer"
+      }
+    >
+      <Icon fontSize="medium" />
+      {isMenuOpen && (
+        <p className="ml-[20px] text-sm truncate my-auto">{label}</p>
+      )}
+    </div>
   </Link>
 );
 
@@ -32,7 +32,7 @@ const Sidebar = () => {
   const isMenuOpen = useSelector((state) => state.app.isMenuOpen);
 
   const sidebarItems = [
-    { icon: HomeIcon, label: "Home",link:"/" },
+    { icon: HomeIcon, label: "Home", link: "/" },
     { icon: WhatshotIcon, label: "Shorts" },
     { icon: SubscriptionsIcon, label: "Subscriptions" },
     { icon: VideoLibraryIcon, label: "Library" },
@@ -45,11 +45,9 @@ const Sidebar = () => {
 
   return (
     <div
-      className={
-        isMenuOpen
-          ? "bg-white sticky p-4 top-[88px] h-screen w-[250px] "
-          : "bg-white sticky top-[88px] p-4 h-screen w-[90px]"
-      }
+      className={`bg-white overflow-y-auto sticky top-[56px] h-[calc(100vh-56px)] px-2.5 ${
+        isMenuOpen ? "w-[200px]" : "w-[72px]"
+      } transition-all duration-200`}
     >
       {sidebarItems.map((item, index) => (
         <SidebarItem

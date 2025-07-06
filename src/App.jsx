@@ -5,6 +5,8 @@ import store from "./utils/Store";
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import MainContainer from "./components/MainContainer";
 import Watchpage from "./components/Watchpage";
+import SearchResultVedioList from "./components/SearchResultVedioList";
+import ChannelPage from "./components/ChannelPage/ChannelMain";
 
 function App() {
   const appRouter = createBrowserRouter([
@@ -17,11 +19,19 @@ function App() {
           element: <MainContainer />,
         },
         {
+          path: "/:username",
+          element: <ChannelPage />,
+        },
+        {
           path: "/watch",
           element: <Watchpage />,
         },
-      ]
-    }
+        {
+          path: "/result",
+          element: <SearchResultVedioList />,
+        },
+      ],
+    },
   ]);
   return (
     <Provider store={store}>

@@ -1,7 +1,7 @@
 import React, { useEffect, useRef, useState } from "react";
 import { fetchButtonList } from "../api/api";
-import ChevronLeftIcon from '@mui/icons-material/ChevronLeft';
-import ChevronRightIcon from '@mui/icons-material/ChevronRight';
+import ChevronLeftIcon from "@mui/icons-material/ChevronLeft";
+import ChevronRightIcon from "@mui/icons-material/ChevronRight";
 
 const ButtonCarousel = () => {
   const [btnList, setBtnList] = useState([]);
@@ -54,29 +54,26 @@ const ButtonCarousel = () => {
   };
 
   return (
-    
-    <div className="relative container bg-white px-4 py-3 sticky top-[88px] z-10  overflow-hidden">
-      {/* Scrollable container */}
+    <div className="relativen no-scrollbar overflow-hidden">
       <div
         ref={scrollRef}
-        className="flex overflow-x-auto scrollbar-hide space-x-3"
-        style={{ scrollbarWidth: "none", msOverflowStyle: "none" }}
+        className="flex overflow-x-auto no-scrollbar space-x-3 pb-2"
       >
         {btnList.map((btn, index) => (
           <button
             key={btn.id || index}
-            className="shrink-0 bg-gray-200 cursor-pointer rounded-xl px-4 py-2 text-lg font-semibold whitespace-nowrap hover:bg-gray-300 transition-colors"
+            className="shrink-0 bg-gray-100 rounded-lg px-4 py-1 text-sm font-semibold whitespace-nowrap hover:bg-gray-200"
           >
             {btn.snippet.title}
           </button>
         ))}
       </div>
 
-      {/* Scroll buttons (only show if needed) */}
+      {/* Scroll buttons */}
       {showLeftScroll && (
         <button
           onClick={() => scroll("left")}
-          className="absolute cursor-pointer left-2 top-1/2 -translate-y-1/2 bg-white p-2 shadow-md rounded-full hover:bg-gray-100"
+          className="absolute left-1 top-1/2 transform -translate-y-1/2 bg-white shadow-md rounded-full p-1 hover:bg-gray-100 z-10"
         >
           <ChevronLeftIcon fontSize="small" />
         </button>
@@ -84,7 +81,7 @@ const ButtonCarousel = () => {
       {showRightScroll && (
         <button
           onClick={() => scroll("right")}
-          className="absolute cursor-pointer right-2 top-1/2 -translate-y-1/2 bg-white p-2 shadow-md rounded-full hover:bg-gray-100"
+          className="absolute right-1 top-1/2 transform -translate-y-1/2 bg-white shadow-md rounded-full p-1 hover:bg-gray-100 z-10"
         >
           <ChevronRightIcon fontSize="small" />
         </button>
